@@ -91,14 +91,14 @@ public class TemperatureConverter {
 
                             if (unit == 'C') {
                                 System.out.printf(
-                                        "%.2f°C is equal to %.2f°F%n",
+                                        "%.2f C is equal to %.2fF%n",
                                         temperature,
                                         converted
                                 );
                             }
                             else {
                                 System.out.printf(
-                                        "%.2f°F is equal to %.2f°C%n",
+                                        "%.2f F is equal to %.2fC%n",
                                         temperature,
                                         converted
                                 );
