@@ -62,32 +62,31 @@ public class TemperatureConverter {
             else {
                 double temperature = Double.parseDouble(input);
 
-                System.out.print("Enter unit (C or F): ");
-                String unit = scnr.nextLine().trim();
+                String unit = "";
+                boolean validUnit = false;
 
-                if (!unit.equalsIgnoreCase("C")
-                        && !unit.equalsIgnoreCase("F")) {
+                while (!validUnit) {
+                    System.out.print("Enter unit (C or F): ");
+                    unit = scnr.nextLine().trim();
 
-                    System.out.println("Error: Invalid unit.");
-                }
-                else {
-                    double converted =
-                            convertTemperature(temperature, unit);
-
-                    if (unit.equalsIgnoreCase("C")) {
-                        System.out.printf(
-                                "%.1f C is equal to %.1f F%n",
-                                temperature,
-                                converted
-                        );
+                    if (unit.equalsIgnoreCase("C")
+                            || unit.equalsIgnoreCase("F")) {
+                        validUnit = true;
                     }
                     else {
-                        System.out.printf(
-                                "%.1f F is equal to %.1f C%n",
-                                temperature,
-                                converted
-                        );
+                        System.out.println("Error: Invalid unit.");
                     }
+                }
+
+                double converted = convertTemperature(temperature, unit);
+
+                if (unit.equalsIgnoreCase("C")) {
+                    System.out.printf("%.1f C is equal to %.1f F%n",
+                            temperature, converted);
+                }
+                else {
+                    System.out.printf("%.1f F is equal to %.1f C%n",
+                            temperature, converted);
                 }
             }
         }
