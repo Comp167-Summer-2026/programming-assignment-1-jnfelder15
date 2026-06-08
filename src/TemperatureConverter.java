@@ -67,7 +67,7 @@ public class TemperatureConverter {
 
     public static void main(String[] args) {
 
-        // scanner for user input
+        // scanner for user input.
         Scanner scnr = new Scanner(System.in);
 
         // keeps program running until stop is entered
