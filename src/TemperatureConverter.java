@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class TemperatureConverter {
-// convert temperature method
+
+    // Convert temperature method
     public static double convertTemperature(double temperature, String unit) {
         if (unit.equalsIgnoreCase("C")) {
             return (temperature * 9.0 / 5.0) + 32.0;
@@ -13,31 +14,33 @@ public class TemperatureConverter {
 
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
-        //true when running
+
         boolean running = true;
-        //default when you run the program
+
         while (running) {
             System.out.print("Enter temperature/unit or stop: ");
             String input = scnr.nextLine();
-            //ends program when you type "stop"
+
+            // Ends program when user types "stop"
             if (input.equalsIgnoreCase("stop")) {
                 running = false;
             }
             else {
                 String[] parts = input.split("/");
-            //error handling
+
+                // Error handling
                 if (parts.length != 2) {
                     System.out.println(
                             "Error: Input must be in the format temperature/unit."
                     );
                 }
-                else if (!isNumeric(parts[0])) {
+                else if (!isNumeric(parts[0].trim())) {
                     System.out.println(
                             "Error: Invalid temperature value."
                     );
                 }
                 else {
-                    double temperature = Double.parseDouble(parts[0]);
+                    double temperature = Double.parseDouble(parts[0].trim());
                     String unit = parts[1].trim();
 
                     if (!unit.equalsIgnoreCase("C")
@@ -53,14 +56,14 @@ public class TemperatureConverter {
 
                         if (unit.equalsIgnoreCase("C")) {
                             System.out.printf(
-                                    "%.2f°C is equal to %.2f°F%n",
+                                    "%.2f C is equal to %.2f F%n",
                                     temperature,
                                     converted
                             );
                         }
                         else {
                             System.out.printf(
-                                    "%.2f°F is equal to %.2f°C%n",
+                                    "%.2f F is equal to %.2f C%n",
                                     temperature,
                                     converted
                             );
@@ -72,7 +75,8 @@ public class TemperatureConverter {
 
         scnr.close();
     }
-//
+
+    // Checks if a string is a valid number
     public static boolean isNumeric(String str) {
         if (str == null || str.length() == 0) {
             return false;
