@@ -72,7 +72,7 @@ public class TemperatureConverter {
 
         scnr.close();
     }
-
+//
     public static boolean isNumeric(String str) {
         if (str == null || str.length() == 0) {
             return false;
