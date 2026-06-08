@@ -1,53 +1,70 @@
 import java.util.Scanner;
 
 public class TemperatureConverter {
-
+// convert temperature method
     public static double convertTemperature(double temperature, String unit) {
         if (unit.equalsIgnoreCase("C")) {
             return (temperature * 9.0 / 5.0) + 32.0;
         }
-        else { // F
+        else {
             return (temperature - 32.0) * 5.0 / 9.0;
         }
     }
 
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
-
+        //true when running
         boolean running = true;
-
+        //default when you run the program
         while (running) {
-            System.out.print("Enter a temperature value or type \"stop\" to quit: ");
+            System.out.print("Enter temperature/unit or stop: ");
             String input = scnr.nextLine();
-
+            //ends program when you type "stop"
             if (input.equalsIgnoreCase("stop")) {
                 running = false;
             }
-            else if (!isNumeric(input)) {
-                System.out.println("Error: Invalid temperature value.");
-            }
             else {
-                double temperature = Double.parseDouble(input);
-
-                System.out.print("Enter the unit (C or F): ");
-                String unit = scnr.nextLine();
-
-                if (!unit.equalsIgnoreCase("C") &&
-                        !unit.equalsIgnoreCase("F")) {
-
-                    System.out.println("Error: Unrecognized unit.");
+                String[] parts = input.split("/");
+            //error handling
+                if (parts.length != 2) {
+                    System.out.println(
+                            "Error: Input must be in the format temperature/unit."
+                    );
+                }
+                else if (!isNumeric(parts[0])) {
+                    System.out.println(
+                            "Error: Invalid temperature value."
+                    );
                 }
                 else {
-                    double converted =
-                            convertTemperature(temperature, unit);
+                    double temperature = Double.parseDouble(parts[0]);
+                    String unit = parts[1].trim();
 
-                    if (unit.equalsIgnoreCase("C")) {
-                        System.out.printf("%.2f°C is equal to %.2f°F%n",
-                                temperature, converted);
+                    if (!unit.equalsIgnoreCase("C")
+                            && !unit.equalsIgnoreCase("F")) {
+
+                        System.out.println(
+                                "Error: Unrecognized unit."
+                        );
                     }
                     else {
-                        System.out.printf("%.2f°F is equal to %.2f°C%n",
-                                temperature, converted);
+                        double converted =
+                                convertTemperature(temperature, unit);
+
+                        if (unit.equalsIgnoreCase("C")) {
+                            System.out.printf(
+                                    "%.2f°C is equal to %.2f°F%n",
+                                    temperature,
+                                    converted
+                            );
+                        }
+                        else {
+                            System.out.printf(
+                                    "%.2f°F is equal to %.2f°C%n",
+                                    temperature,
+                                    converted
+                            );
+                        }
                     }
                 }
             }
